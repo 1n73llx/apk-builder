@@ -12,6 +12,7 @@ ARG ANDROID_BUILD_TOOLS=33.0.2
 # Env
 ENV LANG=C.UTF-8
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV ANDROID_HOME=/opt/android-sdk
 ENV GRADLE_HOME=/opt/gradle
 
 # JDKs: پیش‌فرض Java 11 برای Gradle 6.7، و Java 17 فقط برای sdkmanager
@@ -61,4 +62,5 @@ USER builder
 
 # پیش‌فرض: شل
 CMD ["bash"]
+
 
