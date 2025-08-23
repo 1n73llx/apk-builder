@@ -24,4 +24,4 @@ jobs:
       with:
         context: . # Directory containing your Dockerfile
         push: true
-        tags: your_docker_username/your_image_name:latest # Replace with your details
+        tags: ssider/apk-builder-github:latest # Replace with your details
