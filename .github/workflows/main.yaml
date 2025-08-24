@@ -23,7 +23,7 @@ jobs:
       - name: First set up.
         run: |
           #sudo apt update
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          echo "${{ secrets.PAT }}" | docker login ghcr.io -u $ --password-stdin
 
       - name: Free up some disk space.
         uses: jlumbroso/free-disk-space@main
