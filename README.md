@@ -20,5 +20,3 @@ docker run --rm -v $(pwd)/apk-project:/workspace -w /workspace apk-builder gradl
 ```bash
 docker run -u 0:0 --rm -v $(pwd):/workspace -w /workspace apk-builder gradle clean build
 ```
-
-
