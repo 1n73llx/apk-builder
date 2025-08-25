@@ -1,38 +1,26 @@
-name: Docker
+name: ci
 
 on:
   push:
-    paths:
-      - '.github/workflows/main.yml'
+    branches:
+      - 'main'
 
+using-an-action
 jobs:
-  docker:
-    name: Ubuntu
+  build-and-push-image:
     runs-on: ubuntu-latest
-    if: github.ref_name == github.event.repository.default_branch
-
-    env:
-      IMAGE_TAG: ghcr.io/${{ github.repository }}/apk-builder:latest
-
     steps:
-      - name: Clone.
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
         with:
-          submodules: recursive
+          registry: https://ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.PAT }}
 
-      - name: First set up.
-        run: |
-          #sudo apt update
-          echo "${{ secrets.PAT }}" | docker login ghcr.io -u $ --password-stdin
-
-      - name: Free up some disk space.
-        uses: jlumbroso/free-disk-space@main
+      - name: Build and push Docker image
         with:
-          tool-cache: true
-
-      - name: Docker image build.
-        run: |
-          docker build -t $IMAGE_TAG -
-
-      - name: Push the Docker image.
-        run: docker push $IMAGE_TAG
+          context: image/
+          push: true
+          tags: ghcr.io/1n73llx/apk-builder:latest
