@@ -5,6 +5,7 @@ docker build -t apk-builder .
 ### build with other versions:
 ```
 docker build -t apk-builder \
+  --build-arg GRADLE_VERSION=6.7 \
   --build-arg ANDROID_PLATFORM=android-34 \
   --build-arg ANDROID_BUILD_TOOLS=34.0.0 \
   --build-arg ANDROID_CMDTOOLS_VERSION=10406996 .
